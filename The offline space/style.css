@@ -1,0 +1,374 @@
+/* This is the same CSS from your original file, slightly cleaned up */
+:root {
+    --primary: #6D8B74;
+    --secondary: #D0C9C0;
+    --accent: #A0937D;
+    --light: #F8F5F1;
+    --dark: #3A3845;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--dark);
+    background-color: var(--light);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+}
+
+.text-primary { color: var(--primary) !important; }
+.bg-primary { background-color: var(--primary) !important; }
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #58715f; /* A slightly darker shade */
+    border-color: #58715f;
+}
+.btn-outline-primary {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+.btn-outline-primary:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+.whatsapp-btn {
+    background-color: #25D366;
+    color: white;
+}
+.whatsapp-btn:hover {
+    background-color: #128C7E;
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--dark);
+    font-weight: 500;
+}
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--primary);
+}
+
+.hero {
+    min-height: 90vh;
+    padding-top: 100px;
+}
+.hero-img {
+    animation: float 6s ease-in-out infinite;
+}
+
+.section { padding: 100px 0; }
+.section-title {
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 1rem;
+}
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary);
+    border-radius: 2px;
+}
+.text-center .section-title:after { left: 50%; transform: translateX(-50%); }
+.section-title:not(.text-center):after { left: 0; transform: none; }
+
+
+.card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.form-control {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(109, 139, 116, 0.25);
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 500;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: var(--primary);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.social-icon:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+}
+
+footer a.text-dark:hover {
+    color: var(--primary) !important;
+}
+
+/* Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+.fade-in {
+    animation: fadeIn 1.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .hero { text-align: center; padding-top: 80px; }
+    .hero-img { margin-top: 30px; max-width: 80%; }
+    .section { padding: 60px 0; }
+}
+/* === STYLES FOR THE NEW TEAM SECTION === */
+
+.team-card {
+    background-color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.team-card-img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%; /* This makes the image a circle */
+    object-fit: cover; /* Prevents the image from stretching */
+    margin: 0 auto 1.5rem auto; /* Centers the image and adds space below */
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Adds depth to the photo */
+}
+
+.team-card-role {
+    color: var(--primary); /* Uses your brand's green color */
+    font-weight: 500;
+    margin-top: -5px;
+    margin-bottom: 1rem;
+}
+
+.team-card-social {
+    margin-top: auto; /* Pushes social links to the bottom */
+    padding-top: 1rem;
+}
+
+.team-card-social a {
+    color: var(--secondary); /* Muted color for the icons */
+    margin: 0 0.5rem;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.team-card-social a:hover {
+    color: var(--primary); /* Green on hover */
+}
+/* === STYLES FOR THE MINIMALIST TEAM CAROUSEL (V2) === */
+
+.team-section {
+    background-color: #f8f9fa; /* A very light, clean grey background */
+}
+
+/* The card style, matching your image */
+.team-card-v2 {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef; /* A very subtle border */
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    height: 100%;
+    margin: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card-v2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(46, 52, 61, 0.08);
+}
+
+/* The circular image */
+.team-img-v2 {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1.5rem auto;
+}
+
+/* The member's name */
+.team-name-v2 {
+    font-family: 'Lora', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+/* The member's role */
+.team-role-v2 {
+    color: var(--primary); /* Uses your brand green */
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+/* The description text */
+.team-desc-v2 {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Carousel Indicators (the dots) */
+.team-carousel-indicators {
+    position: static; /* Place them naturally below the carousel */
+    margin-top: 2rem;
+}
+
+.team-carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: none;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.team-carousel-indicators .active {
+    opacity: 1;
+    background-color: var(--primary); /* Active dot is green */
+}
+
+
+/* === STYLES FOR GALLERY & TESTIMONIALS === */
+
+/* --- Gallery Page --- */
+.gallery-section {
+    padding-top: 50px;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+.gallery-item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    color: #fff;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+.gallery-item:hover .gallery-item-overlay {
+    transform: translateY(0);
+}
+.gallery-item-overlay h5 {
+    color: #fff;
+    font-family: 'Lora', serif;
+    margin-bottom: 0.25rem;
+}
+.gallery-item-overlay p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* --- Testimonials Section (on Home Page) --- */
+.testimonial-section {
+    background-color: var(--secondary); /* Uses your soft beige */
+}
+.testimonial-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 2rem;
+    border-left: 5px solid var(--primary);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.testimonial-quote {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.testimonial-author {
+    display: flex;
+    align-items: center;
+}
+.testimonial-author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+.author-name {
+    font-weight: 600;
+}
+.author-title {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
