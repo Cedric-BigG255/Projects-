@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmaceutical Products | IPPEC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4e73df;
+            --secondary: #858796;
+            --success: #1cc88a;
+            --info: #36b9cc;
+            --danger: #e74a3b;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .main-content {
+            flex: 1;
+        }
+        /* Navbar Styles */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary) !important;
+        }
+        .navbar-brand span {
+            color: #333;
+        }
+        .nav-link {
+            font-weight: 600;
+            padding: 8px 15px !important;
+            margin: 0 5px;
+            color: #333 !important;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(78, 115, 223, 0.1);
+            color: var(--primary) !important;
+        }
+        .nav-link.btn-primary {
+            background-color: var(--primary);
+            color: white !important;
+            padding: 8px 20px !important;
+        }
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(78, 115, 223, 0.85), rgba(28, 200, 138, 0.85)), 
+                        url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            position: relative;
+        }
+        /* Drug Cards */
+        .drug-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.1);
+            transition: all 0.3s;
+            height: 100%;
+            border-top: 4px solid var(--primary);
+        }
+        .drug-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem 0 rgba(33, 40, 50, 0.15);
+        }
+        .drug-category {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .interaction-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        /* Pharmacy Features */
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 0;
+            }
+            
+            .display-3 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-pills me-2"></i>IPP<span>EC</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="learning.html">Learning</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="pharmacology.html">Pharmaceuticals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="diseaseslab.html">Diseases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">ContactUs</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="nav-link btn-primary" href="registration.html">
+                            <i class="fas fa-user-plus me-1"></i> SignUp
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4">Pharmaceutical Products Database</h1>
+            <p class="lead fs-4 mb-5">Complete information on medications, inventory management, and redistribution services</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Search Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="search-bar">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Search medications, pharmacies, or insurance providers...">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Pharmaceutical Services</h2>
+                    <p class="lead text-muted">Access Rwanda's comprehensive pharmaceutical network</p>
+                </div>
+                
+                <div class="row g-3 justify-content-center">
+                    <div class="col-auto">
+                        <a href="#medications" class="btn btn-outline-primary rounded-pill">Medication Database</a>
+                    </div>
+                    <div class="col-auto">
+                        <a href="#inventory" class="btn btn-outline-primary rounded-pill">Inventory Management</a>
+                    </div>
+                    <div class="col-auto">
+                        <a href="#redistribution" class="btn btn-outline-primary rounded-pill">Redistribution</a>
+                    </div>
+                    <div class="col-auto">
+                        <a href="#insurance" class="btn btn-outline-primary rounded-pill">Insurance Reimbursement</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medication Database -->
+        <section id="medications" class="py-5">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Medication Database</h2>
+                    <p class="lead text-muted">Comprehensive information on pharmaceutical products available in Rwanda</p>
+                </div>
+                
+                <div class="row g-4">
+                    <!-- Drug 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="drug-card p-4 position-relative">
+                            <span class="drug-category">Antibiotic</span>
+                            <h4 class="mb-3">Amoxicillin 500mg</h4>
+                            <p class="text-muted">Penicillin antibiotic for bacterial infections</p>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Available At:</h6>
+                                <span class="text-muted">15 pharmacies in Kigali</span>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Price Range:</h6>
+                                <span class="text-muted">RWF 1,500 - RWF 2,200</span>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Insurance Coverage:</h6>
+                                <span class="text-muted">Covered by all RHIA insurers</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline-primary w-100 mt-2">View Details & Locations</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Drug 2 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="drug-card p-4 position-relative">
+                            <span class="drug-category">Antimalarial</span>
+                            <h4 class="mb-3">Artemether/Lumefantrine</h4>
+                            <p class="text-muted">First-line treatment for uncomplicated malaria</p>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Available At:</h6>
+                                <span class="text-muted">32 pharmacies nationwide</span>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Price Range:</h6>
+                                <span class="text-muted">RWF 3,000 - RWF 4,500</span>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Insurance Coverage:</h6>
+                                <span class="text-muted">Covered by 6/7 RHIA insurers</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline-primary w-100 mt-2">View Details & Locations</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Drug 3 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="drug-card p-4 position-relative">
+                            <span class="drug-category">Antihypertensive</span>
+                            <h4 class="mb-3">Losartan 50mg</h4>
+                            <p class="text-muted">ARB for hypertension management</p>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Available At:</h6>
+                                <span class="text-muted">28 pharmacies nationwide</span>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Price Range:</h6>
+                                <span class="text-muted">RWF 2,800 - RWF 3,500</span>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Insurance Coverage:</h6>
+                                <span class="text-muted">Covered by 5/7 RHIA insurers</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline-primary w-100 mt-2">View Details & Locations</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <a href="#" class="btn btn-primary btn-lg">Browse Full Medication Database</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pharmacy Features -->
+        <section id="inventory" class="py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Pharmacy Inventory Management</h2>
+                    <p class="lead text-muted">Tools to help pharmacies optimize their pharmaceutical stock</p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-boxes"></i>
+                            </div>
+                            <h4>Stock Monitoring</h4>
+                            <p class="text-muted">Real-time tracking of pharmaceutical inventory levels across your network</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h4>Expiration Alerts</h4>
+                            <p class="text-muted">Automated notifications for near-expiration products</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h4>Redistribution Network</h4>
+                            <p class="text-muted">Connect with other pharmacies to redistribute near-expiration products</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Expiration Example -->
+                <div class="row mt-5">
+                    <div class="col-lg-6 mx-auto">
+                        <div class="p-4 bg-white rounded-3 shadow-sm">
+                            <h5 class="mb-3"><i class="fas fa-bell text-danger me-2"></i>Expiration Alert</h5>
+                            <div class="expiration-alert">
+                                <p class="mb-1"><strong>Medication:</strong> Paracetamol 500mg (Batch #PCT-2023-08)</p>
+                                <p class="mb-1"><strong>Quantity:</strong> 120 packets</p>
+                                <p class="mb-1"><strong>Expires:</strong> 15 September 2023 (30 days)</p>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <a href="#" class="btn btn-sm btn-outline-primary">View Redistribution Options</a>
+                                    <a href="#" class="btn btn-sm btn-outline-success">Request Insurance Reimbursement</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insurance Section -->
+        <section id="insurance" class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <h2 class="fw-bold mb-4">Insurance Reimbursement System</h2>
+                        <p class="lead mb-4">Streamlined pharmaceutical claims processing for Rwanda's health insurers</p>
+                        
+                        <ul class="list-unstyled">
+                            <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i> Direct submission of pharmaceutical claims</li>
+                            <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i> Real-time claim status tracking</li>
+                            <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i> Automated reconciliation with insurer formularies</li>
+                            <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i> Electronic payment processing</li>
+                        </ul>
+                        
+                        <a href="#" class="btn btn-primary mt-3">Learn About RHIA Integration</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" 
+                             alt="Insurance Process" class="img-fluid rounded-3 shadow">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+       <section class="py-5" style="background-color: #4e73df; color: white;">
+          <div class="container text-center">
+           <h2 class="fw-bold mb-4">Ready to Transform Pharmaceutical Management?</h2>
+            <p class="lead mb-5">Join Rwanda's leading healthcare providers using IPPEC for pharmaceutical services</p>
+               <div class="d-flex justify-content-center gap-3">
+            <a href="registration.html" class="btn btn-light btn-lg px-4">Register Your Pharmacy</a>
+            <a href="contact-us.html" class="btn btn-outline-light btn-lg px-4">Contact Our Team</a>
+          </div>
+          </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+     <footer class="footer pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-4">
+                        <h5 class="d-flex align-items-center gap-2 mb-3">
+                            <i class="fas fa-pills fs-4" style="color: #4e73df;"></i>
+                            <span class="fw-bold">IPP<span style="color: #4e73df;">EC</span></span>
+                        </h5>
+                        <p class="mb-3">
+                            Rwanda's premier pharmaceutical management platform connecting healthcare providers, pharmacies, insurers, and patients.
+                        </p>
+                        <div class="social-icons mt-3">
+                            <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-4">Quick Links</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="index.html">Home</a></li>
+                        <li class="mb-2"><a href="learning.html">Learning</a></li>
+                        <li class="mb-2"><a href="pharmacology.html">Pharmaceuticals</a></li>
+                        <li class="mb-2"><a href="diseases.html">Diseases</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-4">Services</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#">Medication Locator</a></li>
+                        <li class="mb-2"><a href="#">Inventory Management</a></li>
+                        <li class="mb-2"><a href="#">Insurance Claims</a></li>
+                        <li class="mb-2"><a href="#">E-Prescription</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-4">Contact Us</h6>
+                    <p class="mb-2"><i class="fas fa-map-marker-alt me-2" style="color: #4e73df;"></i> Kigali, Rwanda</p>
+                    <p class="mb-2"><i class="fas fa-phone me-2" style="color: #4e73df;"></i>+250 787 990 356</p>
+                    <p class="mb-3"><i class="fas fa-envelope me-2" style="color: #4e73df;"></i> info@ippec.rw</p>
+                    <a href="contact-us.html" class="btn btn-sm" style="background-color: #4e73df; color: white;">Contact Support</a>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 IPPEC. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="text-decoration-none">Privacy Policy</a></li>
+                        <li class="list-inline-item mx-2">•</li>
+                        <li class="list-inline-item"><a href="#" class="text-decoration-none">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

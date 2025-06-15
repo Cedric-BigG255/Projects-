@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Library | PharmEd</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4e73df;
+            --secondary: #858796;
+            --success: #1cc88a;
+            --info: #36b9cc;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .main-content {
+            flex: 1;
+        }
+        .navbar {
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+        }
+        .hero-section {
+            background: linear-gradient(135deg, rgba(78, 115, 223, 0.85), rgba(28, 200, 138, 0.85)), 
+                        url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            position: relative;
+        }
+        .disease-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.1);
+            transition: all 0.3s;
+            height: 100%;
+            border-top: 4px solid var(--primary);
+        }
+        .disease-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.5rem 0 rgba(33, 40, 50, 0.15);
+        }
+        .disease-category {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .symptom-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            background-color: rgba(78, 115, 223, 0.1);
+            color: var(--primary);
+        }
+        .btn-primary {
+            padding: 12px 24px;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        /* Modern Glass Navbar */
+         .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary) !important;
+        }
+        
+        .navbar-brand span {
+            color: #333;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            padding: 8px 15px !important;
+            margin: 0 5px;
+            color: #333 !important;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(78, 115, 223, 0.1);
+            color: var(--primary) !important;
+        }
+        
+        .nav-link.btn-primary {
+            background-color: var(--primary);
+            color: white !important;
+            padding: 8px 20px !important;
+        }
+        /* Footer styles */
+       .footer {
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 0;
+            }
+            
+            .display-3 {
+                font-size: 2.5rem;
+            }
+        }
+        /* Search bar */
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        /* Disease severity indicator */
+        .severity-indicator {
+            height: 8px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+        .severity-low { background-color: var(--success); width: 30%; }
+        .severity-medium { background-color: var(--info); width: 60%; }
+        .severity-high { background-color: var(--danger); width: 90%; }
+    </style>
+</head>
+<body>
+    <!-- Modern Glass Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+              <a class="navbar-brand" href="index.html">
+                <i class="fas fa-pills me-2"></i>IPP<span>EC</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="learning.html">Learning</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pharmacology.html">Pharmaceutical</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="diseases.html">Diseases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">ContactUs</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="nav-link btn-primary" href="registration.html">
+                            <i class="fas fa-user-plus me-1"></i> SignUp
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4">Disease Information Center</h1>
+            <p class="lead fs-4 mb-5">Comprehensive guides on symptoms, treatments, and management of common conditions</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Search Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="search-bar">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Search for diseases or symptoms...">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Browse by Category</h2>
+                    <p class="lead text-muted">Find information organized by disease type</p>
+                </div>
+                
+                <div class="row g-3 justify-content-center">
+                    <div class="col-auto">
+                        <a href="#" class="btn btn-outline-primary rounded-pill">Infectious Diseases</a>
+                    </div>
+                    <div class="col-auto">
+                        <a href="#" class="btn btn-outline-primary rounded-pill">Chronic Conditions</a>
+                    </div>
+                    <div class="col-auto">
+                        <a href="#" class="btn btn-outline-primary rounded-pill">Cardiovascular</a>
+                    </div>
+                    <div class="col-auto">
+                        <a href="#" class="btn btn-outline-primary rounded-pill">Respiratory</a>
+                    </div>
+                    <div class="col-auto">
+                        <a href="#" class="btn btn-outline-primary rounded-pill">Pediatric</a>
+                    </div>
+                    <div class="col-auto">
+                        <a href="#" class="btn btn-outline-primary rounded-pill">Mental Health</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Diseases -->
+        <section class="py-5">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Common Health Conditions</h2>
+                    <p class="lead text-muted">Essential information for healthcare providers and patients</p>
+                </div>
+                
+                <div class="row g-4">
+                    <!-- Disease 1 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="disease-card p-4 position-relative">
+                            <span class="disease-category">Infectious</span>
+                            <h4 class="mb-3">Malaria</h4>
+                            <p class="text-muted">Mosquito-borne parasitic disease prevalent in tropical regions</p>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Symptoms:</h6>
+                                <div>
+                                    <span class="symptom-badge">Fever</span>
+                                    <span class="symptom-badge">Chills</span>
+                                    <span class="symptom-badge">Headache</span>
+                                    <span class="symptom-badge">Fatigue</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Severity:</h6>
+                                <div class="severity-indicator severity-high"></div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Treatment:</h6>
+                                <span class="text-muted">Artemisinin-based combination therapy (ACT)</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline-primary w-100 mt-2">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Disease 2 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="disease-card p-4 position-relative">
+                            <span class="disease-category">Chronic</span>
+                            <h4 class="mb-3">Hypertension</h4>
+                            <p class="text-muted">Persistently elevated blood pressure</p>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Symptoms:</h6>
+                                <div>
+                                    <span class="symptom-badge">Often asymptomatic</span>
+                                    <span class="symptom-badge">Headache</span>
+                                    <span class="symptom-badge">Dizziness</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Severity:</h6>
+                                <div class="severity-indicator severity-medium"></div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Treatment:</h6>
+                                <span class="text-muted">Lifestyle changes and antihypertensive medications</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline-primary w-100 mt-2">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Disease 3 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="disease-card p-4 position-relative">
+                            <span class="disease-category">Respiratory</span>
+                            <h4 class="mb-3">Asthma</h4>
+                            <p class="text-muted">Chronic inflammatory disease of the airways</p>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Symptoms:</h6>
+                                <div>
+                                    <span class="symptom-badge">Wheezing</span>
+                                    <span class="symptom-badge">Shortness of breath</span>
+                                    <span class="symptom-badge">Chest tightness</span>
+                                    <span class="symptom-badge">Cough</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Severity:</h6>
+                                <div class="severity-indicator severity-medium"></div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Treatment:</h6>
+                                <span class="text-muted">Bronchodilators and anti-inflammatory medications</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline-primary w-100 mt-2">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Disease 4 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="disease-card p-4 position-relative">
+                            <span class="disease-category">Infectious</span>
+                            <h4 class="mb-3">HIV/AIDS</h4>
+                            <p class="text-muted">Viral infection that attacks the immune system</p>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Symptoms:</h6>
+                                <div>
+                                    <span class="symptom-badge">Fever</span>
+                                    <span class="symptom-badge">Weight loss</span>
+                                    <span class="symptom-badge">Fatigue</span>
+                                    <span class="symptom-badge">Recurrent infections</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Severity:</h6>
+                                <div class="severity-indicator severity-high"></div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Treatment:</h6>
+                                <span class="text-muted">Antiretroviral therapy (ART)</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline-primary w-100 mt-2">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Disease 5 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="disease-card p-4 position-relative">
+                            <span class="disease-category">Chronic</span>
+                            <h4 class="mb-3">Diabetes Mellitus</h4>
+                            <p class="text-muted">Metabolic disorder characterized by high blood sugar</p>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Symptoms:</h6>
+                                <div>
+                                    <span class="symptom-badge">Increased thirst</span>
+                                    <span class="symptom-badge">Frequent urination</span>
+                                    <span class="symptom-badge">Fatigue</span>
+                                    <span class="symptom-badge">Blurred vision</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Severity:</h6>
+                                <div class="severity-indicator severity-high"></div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Treatment:</h6>
+                                <span class="text-muted">Lifestyle changes, oral medications, or insulin</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline-primary w-100 mt-2">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Disease 6 -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="disease-card p-4 position-relative">
+                            <span class="disease-category">Gastrointestinal</span>
+                            <h4 class="mb-3">Gastroenteritis</h4>
+                            <p class="text-muted">Inflammation of the stomach and intestines</p>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Symptoms:</h6>
+                                <div>
+                                    <span class="symptom-badge">Diarrhea</span>
+                                    <span class="symptom-badge">Vomiting</span>
+                                    <span class="symptom-badge">Abdominal pain</span>
+                                    <span class="symptom-badge">Fever</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Severity:</h6>
+                                <div class="severity-indicator severity-low"></div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h6 class="d-inline-block me-2">Treatment:</h6>
+                                <span class="text-muted">Oral rehydration, dietary management</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline-primary w-100 mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prevention Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <h2 class="fw-bold mb-4">Disease Prevention Resources</h2>
+                        <p class="lead mb-4">Learn how to protect yourself and your community from common illnesses</p>
+                        
+                        <div class="d-flex mb-3">
+                            <div class="me-3 text-primary">
+                                <i class="fas fa-syringe fs-4"></i>
+                            </div>
+                            <div>
+                                <h5>Vaccination Schedules</h5>
+                                <p class="text-muted">Up-to-date immunization recommendations for all ages</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex mb-3">
+                            <div class="me-3 text-primary">
+                                <i class="fas fa-hand-holding-water fs-4"></i>
+                            </div>
+                            <div>
+                                <h5>Hygiene Practices</h5>
+                                <p class="text-muted">Proper techniques to prevent disease transmission</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex">
+                            <div class="me-3 text-primary">
+                                <i class="fas fa-utensils fs-4"></i>
+                            </div>
+                            <div>
+                                <h5>Nutrition Guides</h5>
+                                <p class="text-muted">Dietary recommendations to boost immunity</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Prevention" class="img-fluid rounded-3 shadow">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+    <section class="py-5" style="background-color: #4e73df; color: white;">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-4">Need Personalized Health Information?</h2>
+        <p class="lead mb-5">Create an account to track your health concerns and get tailored recommendations</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="registration.html" class="btn btn-light btn-lg px-4">Sign Up Free</a>
+            <a href="contact-us.html" class="btn btn-outline-light btn-lg px-4">Ask a Question</a>
+        </div>
+    </div>
+</section>
+    </div>
+
+    <!-- Footer -->
+ <footer class="footer pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-4">
+                        <h5 class="d-flex align-items-center gap-2 mb-3">
+                            <i class="fas fa-pills fs-4" style="color: #4e73df;"></i>
+                            <span class="fw-bold">IPP<span style="color: #4e73df;">EC</span></span>
+                        </h5>
+                        <p class="mb-3">
+                            Rwanda's premier pharmaceutical management platform connecting healthcare providers, pharmacies, insurers, and patients.
+                        </p>
+                        <div class="social-icons mt-3">
+                            <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-4">Quick Links</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="index.html">Home</a></li>
+                        <li class="mb-2"><a href="learning.html">Learning</a></li>
+                        <li class="mb-2"><a href="pharmacology.html">Pharmaceuticals</a></li>
+                        <li class="mb-2"><a href="diseases.html">Diseases</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-4">Services</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#">Medication Locator</a></li>
+                        <li class="mb-2"><a href="#">Inventory Management</a></li>
+                        <li class="mb-2"><a href="#">Insurance Claims</a></li>
+                        <li class="mb-2"><a href="#">E-Prescription</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-4">Contact Us</h6>
+                    <p class="mb-2"><i class="fas fa-map-marker-alt me-2" style="color: #4e73df;"></i> Kigali, Rwanda</p>
+                    <p class="mb-2"><i class="fas fa-phone me-2" style="color: #4e73df;"></i>+250 787 990 356</p>
+                    <p class="mb-3"><i class="fas fa-envelope me-2" style="color: #4e73df;"></i> info@ippec.rw</p>
+                    <a href="contact-us.html" class="btn btn-sm" style="background-color: #4e73df; color: white;">Contact Support</a>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 IPPEC. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="text-decoration-none">Privacy Policy</a></li>
+                        <li class="list-inline-item mx-2">•</li>
+                        <li class="list-inline-item"><a href="#" class="text-decoration-none">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacology | PharmEd</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4e73df;
+            --secondary: #858796;
+            --success: #1cc88a;
+            --danger: #e74a3b;
+        }
+        body {
+            background-color: #f8f9fc;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .main-content {
+            flex: 1;
+        }
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+        }
+        .sidebar-link {
+            padding: 12px 20px;
+            color: #333;
+            border-left: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+            background-color: rgba(78, 115, 223, 0.05);
+        }
+        .drug-card {
+            border-radius: 10px;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.1);
+            transition: transform 0.3s;
+        }
+        .drug-card:hover {
+            transform: translateY(-5px);
+        }
+        .nav-pills .nav-link.active {
+            background-color: var(--primary);
+        }
+        .pharmacy-finder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        /* Footer Styles */
+       .footer {
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 0;
+            }
+            
+            .display-3 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-prescription-bottle-alt me-2"></i>PharmEd
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="pharmacology.html"><i class="fas fa-pills"></i> Pharmacology</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="diseases.html"><i class="fas fa-disease"></i> Diseases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i> Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container py-5">
+            <div class="row">
+                <!-- Sidebar Menu (Categories) -->
+                <div class="col-lg-3 mb-4">
+                    <div class="sidebar p-3">
+                        <h5 class="fw-bold mb-3 text-center">Drug Categories</h5>
+                        <hr>
+                        <div class="d-flex flex-column">
+                            <a href="#" class="sidebar-link active"><i class="fas fa-list me-2"></i> Overview</a>
+                            <a href="#" class="sidebar-link"><i class="fas fa-bolt me-2"></i> Indications & Dosage</a>
+                            <a href="#" class="sidebar-link"><i class="fas fa-exclamation-triangle me-2"></i> Adverse Effects</a>
+                            <a href="#" class="sidebar-link"><i class="fas fa-ban me-2"></i> Contraindications</a>
+                            <a href="#" class="sidebar-link"><i class="fas fa-random me-2"></i> Interactions</a>
+                            <a href="#" class="sidebar-link"><i class="fas fa-flask me-2"></i> Pharmacology</a>
+                            <a href="#" class="sidebar-link"><i class="fas fa-molecule me-2"></i> Structure</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drug Content -->
+                <div class="col-lg-9">
+                    <!-- Pharmacy Finder -->
+                    <div class="pharmacy-finder p-4 mb-4">
+                        <h4 class="text-white"><i class="fas fa-map-marker-alt me-2"></i>Find a Pharmacy</h4>
+                        <div class="row g-2">
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" placeholder="Your Location (e.g., New York)">
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" placeholder="Drug Name (e.g., Amoxicillin)">
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-light w-100"><i class="fas fa-search"></i> Search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drug Card (Example: Metformin) -->
+                    <div class="card drug-card mb-4">
+                        <div class="card-header bg-white">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="mb-0">Metformin</h4>
+                                <span class="badge bg-success">Antidiabetic</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <ul class="nav nav-pills mb-4" id="metformin-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#metformin-indications">Indications</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#metformin-side-effects">Side Effects</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#metformin-interactions">Interactions</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="metformin-indications">
+                                    <h5><i class="fas fa-check-circle text-primary me-2"></i>Indications & Dosage</h5>
+                                    <p><strong>Type 2 Diabetes Mellitus:</strong> 500 mg once or twice daily, max 2000 mg/day.</p>
+                                    <p><strong>PCOS:</strong> Off-label use for insulin resistance.</p>
+                                </div>
+                                <div class="tab-pane fade" id="metformin-side-effects">
+                                    <h5><i class="fas fa-exclamation-triangle text-danger me-2"></i>Adverse Effects</h5>
+                                    <ul>
+                                        <li>GI upset (diarrhea, nausea)</li>
+                                        <li>Vitamin B12 deficiency (long-term)</li>
+                                        <li>Lactic acidosis (rare)</li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane fade" id="metformin-interactions">
+                                    <h5><i class="fas fa-random text-warning me-2"></i>Drug Interactions</h5>
+                                    <ul>
+                                        <li><strong>Contrast dye:</strong> Risk of lactic acidosis. Hold 48h before/after.</li>
+                                        <li><strong>Alcohol:</strong> ↑ Risk of hypoglycemia.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drug Card (Example: Ibuprofen) -->
+                    <div class="card drug-card">
+                        <div class="card-header bg-white">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="mb-0">Ibuprofen</h4>
+                                <span class="badge bg-danger">NSAID</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- Tabs would repeat similarly for Ibuprofen -->
+                            <h5><i class="fas fa-check-circle text-primary me-2"></i>Key Facts</h5>
+                            <p><strong>Pain/Fever:</strong> 200–400 mg every 4–6 hours (max 1200 mg/day).</p>
+                            <p><strong>⚠️ Warning:</strong> Avoid in peptic ulcer disease, CKD, or with anticoagulants.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Modern Footer -->
+<footer class="footer pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-4">
+                        <h5 class="d-flex align-items-center gap-2 mb-3">
+                            <i class="fas fa-pills fs-4" style="color: #4e73df;"></i>
+                            <span class="fw-bold">IPP<span style="color: #4e73df;">EC</span></span>
+                        </h5>
+                        <p class="mb-3">
+                            Rwanda's premier pharmaceutical management platform connecting healthcare providers, pharmacies, insurers, and patients.
+                        </p>
+                        <div class="social-icons mt-3">
+                            <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-4">Quick Links</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="index.html">Home</a></li>
+                        <li class="mb-2"><a href="learning.html">Learning</a></li>
+                        <li class="mb-2"><a href="pharmacology.html">Pharmaceuticals</a></li>
+                        <li class="mb-2"><a href="diseases.html">Diseases</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-4">Services</h6>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#">Medication Locator</a></li>
+                        <li class="mb-2"><a href="#">Inventory Management</a></li>
+                        <li class="mb-2"><a href="#">Insurance Claims</a></li>
+                        <li class="mb-2"><a href="#">E-Prescription</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-uppercase fw-bold mb-4">Contact Us</h6>
+                    <p class="mb-2"><i class="fas fa-map-marker-alt me-2" style="color: #4e73df;"></i> Kigali, Rwanda</p>
+                    <p class="mb-2"><i class="fas fa-phone me-2" style="color: #4e73df;"></i>+250 787 990 356</p>
+                    <p class="mb-3"><i class="fas fa-envelope me-2" style="color: #4e73df;"></i> info@ippec.rw</p>
+                    <a href="contact-us.html" class="btn btn-sm" style="background-color: #4e73df; color: white;">Contact Support</a>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 IPPEC. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#" class="text-decoration-none">Privacy Policy</a></li>
+                        <li class="list-inline-item mx-2">•</li>
+                        <li class="list-inline-item"><a href="#" class="text-decoration-none">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
