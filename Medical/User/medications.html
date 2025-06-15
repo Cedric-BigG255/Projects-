@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Medications | HealthHub</title>
+    <!-- CSS Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar d-none d-lg-block">
+             <a href="dashboard.html" class="sidebar-brand d-flex align-items-center justify-content-center">
+                <i class="fas fa-heartbeat me-2"></i> IPPEC
+            </a>
+            <ul class="nav flex-column mt-3">
+                <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link active" href="medications.html"><i class="fas fa-pills"></i> My Medications</a></li>
+                <li class="nav-item"><a class="nav-link" href="pharmacy-finder.html"><i class="fas fa-store"></i> Find Pharmacy</a></li>
+                <li class="nav-item"><a class="nav-link" href="orders.html"><i class="fas fa-receipt"></i> My Orders</a></li>
+                <li class="nav-item"><a class="nav-link" href="education.html"><i class="fas fa-book-medical"></i> Health Education</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-calendar-check"></i> Appointments</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content Wrapper -->
+        <div class="main-content-wrapper">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <!-- ... (You can copy the same navbar code from dashboard.html) ... -->
+                 <div class="container-fluid"><h5 class="mb-0 fw-bold">My Medications</h5></div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="flex-grow-1 p-4">
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <h2 class="mb-1">Manage Your Medications</h2>
+                        <p class="text-muted">Keep track of your active prescriptions and refill needs.</p>
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        <a href="pharmacy-finder.html" class="btn btn-primary btn-lg"><i class="fas fa-plus me-2"></i>Order a New Prescription</a>
+                    </div>
+                </div>
+
+                <!-- Medication Tabs -->
+                <ul class="nav nav-pills mb-4" id="medsTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="active-tab" data-bs-toggle="pill" data-bs-target="#active-meds">Active (3)</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="refill-tab" data-bs-toggle="pill" data-bs-target="#refill-meds">Needs Refill (1)</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="history-tab" data-bs-toggle="pill" data-bs-target="#history-meds">History (5)</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="medsTabContent">
+                    <!-- Active Medications Pane -->
+                    <div class="tab-pane fade show active" id="active-meds">
+                        <div class="card mb-3">
+                            <div class="card-body d-flex align-items-center">
+                                <i class="fas fa-capsules fa-2x text-primary me-4"></i>
+                                <div class="flex-grow-1">
+                                    <h5 class="mb-1">Metformin 500mg</h5>
+                                    <p class="text-muted mb-1">For Type 2 Diabetes | Take 1 tablet twice daily</p>
+                                    <span class="badge bg-success-subtle text-success-emphasis rounded-pill">Refill in 15 days</span>
+                                </div>
+                                <a href="pharmacy-finder.html" class="btn btn-outline-primary ms-3">Request Refill</a>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body d-flex align-items-center">
+                                <i class="fas fa-tablets fa-2x text-primary me-4"></i>
+                                <div class="flex-grow-1">
+                                    <h5 class="mb-1">Lisinopril 10mg</h5>
+                                    <p class="text-muted mb-1">For High Blood Pressure | Take 1 tablet daily</p>
+                                    <span class="badge bg-success-subtle text-success-emphasis rounded-pill">Refill in 12 days</span>
+                                </div>
+                                <a href="pharmacy-finder.html" class="btn btn-outline-primary ms-3">Request Refill</a>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body d-flex align-items-center">
+                                <i class="fas fa-prescription-bottle-alt fa-2x text-warning me-4"></i>
+                                <div class="flex-grow-1">
+                                    <h5 class="mb-1">Atorvastatin 20mg</h5>
+                                    <p class="text-muted mb-1">For Cholesterol | Take 1 tablet at bedtime</p>
+                                    <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">Refill in 3 days</span>
+                                </div>
+                                <a href="pharmacy-finder.html" class="btn btn-warning ms-3">Refill Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Refill Pane (Just showing the one that needs refill) -->
+                    <div class="tab-pane fade" id="refill-meds">
+                        <!-- Content for this tab is dynamically populated -->
+                    </div>
+                    <!-- History Pane -->
+                    <div class="tab-pane fade" id="history-meds">
+                         <!-- Content for this tab is dynamically populated -->
+                    </div>
+                </div>
+            </main>
+             <!-- FOOTER - INSPIRED BY YOUR IMAGE -->
+<footer class="footer-inspired">
+    <!-- Top Dark Section -->
+    <div class="footer-top">
+        <div class="container text-center">
+            
+            <!-- Social Icons -->
+            <div class="social-icons mb-4">
+                <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+
+            <!-- Main Navigation -->
+            <nav class="footer-nav mb-4">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="dashboard.html">Dashboard</a></li>
+                    <li class="list-inline-item"><a href="medications.html">Medications</a></li>
+                    <li class="list-inline-item"><a href="pharmacy-finder.html">Pharmacies</a></li>
+                    <li class="list-inline-item"><a href="education.html">Education</a></li>
+                    <li class="list-inline-item"><a href="orders.html">Orders</a></li>
+                </ul>
+            </nav>
+
+            <!-- Secondary Navigation -->
+            <nav class="footer-nav-secondary">
+                 <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Appointments</a></li>
+                    <li class="list-inline-item"><a href="#">Support</a></li>
+                    <li class="list-inline-item"><a href="#">Contact</a></li>
+                    <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Scroll to Top Button -->
+            <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Bottom Blue Section -->
+    <div class="footer-bottom">
+        <div class="container text-center">
+            <p class="mb-0">EMPOWERING YOUR HEALTH JOURNEY, WITH <i class="fas fa-heart"></i> CARE</p>
+              <p class="mb-0 copyright">© 2025 IPPEC. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // JavaScript for the Scroll to Top button
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+</script>
+</body>
+</html>

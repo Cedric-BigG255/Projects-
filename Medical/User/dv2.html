@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard V2 | HealthHub</title>
+    <!-- CSS Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Add new styles for V2 dashboard components -->
+    <style>
+        .welcome-hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        .welcome-hero .btn-light {
+            font-weight: 600;
+        }
+        .stat-card-v2 {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+        }
+        .stat-card-v2 .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        .health-trend-chart {
+            height: 250px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #adb5bd;
+            border-radius: 8px;
+        }
+        .action-tile {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        .action-tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            color: var(--primary);
+        }
+        .action-tile i {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar d-none d-lg-block">
+             <a href="dashboard.html" class="sidebar-brand d-flex align-items-center justify-content-center">
+                <i class="fas fa-heartbeat me-2"></i> HealthHub
+            </a>
+            <ul class="nav flex-column mt-3">
+                <li class="nav-item"><a class="nav-link active" href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="medications.html"><i class="fas fa-pills"></i> My Medications</a></li>
+                <li class="nav-item"><a class="nav-link" href="pharmacy-finder.html"><i class="fas fa-store"></i> Find Pharmacy</a></li>
+                <li class="nav-item"><a class="nav-link" href="orders.html"><i class="fas fa-receipt"></i> My Orders</a></li>
+                <li class="nav-item"><a class="nav-link" href="education.html"><i class="fas fa-book-medical"></i> Health Education</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-calendar-check"></i> Appointments</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content Wrapper -->
+        <div class="main-content-wrapper">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <button class="btn btn-link d-lg-none" type="button" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+                    <h5 class="mb-0 fw-bold">Dashboard</h5>
+                    <!-- Navbar right side (can be copy-pasted from original) -->
+                    <div class="d-flex align-items-center ms-auto">
+                        <div class="dropdown me-3">
+                           <!-- Notification Dropdown -->
+                        </div>
+                        <div class="dropdown">
+                           <!-- User Dropdown -->
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="flex-grow-1 p-4">
+                <!-- Welcome Hero -->
+                <div class="card welcome-hero mb-4">
+                    <div class="card-body p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h3 class="mb-1">Hello, John Doe!</h3>
+                                <p class="opacity-75 mb-0">You have an upcoming appointment. Stay on top of your health today.</p>
+                            </div>
+                            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                <div class="bg-white bg-opacity-25 p-3 rounded-3">
+                                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                                        <i class="fas fa-calendar-check fa-2x me-3"></i>
+                                        <div>
+                                            <h6 class="mb-0">Dr. Sarah Johnson</h6>
+                                            <p class="mb-0 small">Tomorrow at 10:30 AM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="row g-4 mb-4">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card-v2 shadow-sm">
+                            <div class="icon-circle bg-primary-subtle text-primary"><i class="fas fa-pills"></i></div>
+                            <div>
+                                <p class="text-muted mb-0">Active Meds</p>
+                                <h4 class="mb-0">3</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card-v2 shadow-sm">
+                            <div class="icon-circle bg-success-subtle text-success"><i class="fas fa-check-circle"></i></div>
+                            <div>
+                                <p class="text-muted mb-0">Tasks Done</p>
+                                <h4 class="mb-0">1 / 3</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card-v2 shadow-sm">
+                            <div class="icon-circle bg-warning-subtle text-warning"><i class="fas fa-prescription-bottle-alt"></i></div>
+                            <div>
+                                <p class="text-muted mb-0">Refills Needed</p>
+                                <h4 class="mb-0">1</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="stat-card-v2 shadow-sm">
+                            <div class="icon-circle bg-info-subtle text-info"><i class="fas fa-tint"></i></div>
+                            <div>
+                                <p class="text-muted mb-0">Blood Pressure</p>
+                                <h4 class="mb-0">122/80</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Left Column: Main Tasks -->
+                    <div class="col-lg-7">
+                        <!-- Daily Health Plan -->
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <h5 class="mb-0">Your Daily Health Plan</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="medication-checklist">
+                                    <div class="form-check fs-5 mb-3 p-3 rounded-3 bg-light">
+                                        <input class="form-check-input p-2" type="checkbox" id="med1" checked>
+                                        <label class="form-check-label ms-2" for="med1"><strong>Metformin 500mg</strong> (8:00 AM)</label>
+                                    </div>
+                                    <div class="form-check fs-5 mb-3 p-3 rounded-3 bg-light">
+                                        <input class="form-check-input p-2" type="checkbox" id="med2">
+                                        <label class="form-check-label ms-2" for="med2"><strong>30-Min Walk</strong> (Post-Lunch)</label>
+                                    </div>
+                                     <div class="form-check fs-5 p-3 rounded-3 bg-light">
+                                        <input class="form-check-input p-2" type="checkbox" id="med3">
+                                        <label class="form-check-label ms-2" for="med3"><strong>Atorvastatin 20mg</strong> (9:00 PM)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Quick Actions & Trends -->
+                    <div class="col-lg-5">
+                        <!-- Health Trend Chart -->
+                        <div class="card mb-4">
+                             <div class="card-header d-flex justify-content-between">
+                                <h5 class="mb-0">Health Trend</h5>
+                                <span class="text-muted">Blood Sugar (Last 7 Days)</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="health-trend-chart">
+                                    <i class="fas fa-chart-line fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Access -->
+                        <div class="card">
+                            <div class="card-header"><h5 class="mb-0">Quick Access</h5></div>
+                            <div class="card-body">
+                               <div class="row g-3">
+                                   <div class="col-6">
+                                       <a href="pharmacy-finder.html" class="action-tile">
+                                           <i class="fas fa-prescription-bottle"></i>
+                                           <h6>Refill Meds</h6>
+                                       </a>
+                                   </div>
+                                   <div class="col-6">
+                                       <a href="#" class="action-tile">
+                                           <i class="fas fa-calendar-plus"></i>
+                                           <h6>Appointments</h6>
+                                       </a>
+                                   </div>
+                                   <div class="col-6">
+                                       <a href="education.html" class="action-tile">
+                                           <i class="fas fa-book-medical"></i>
+                                           <h6>Learn</h6>
+                                       </a>
+                                   </div>
+                                   <div class="col-6">
+                                       <a href="#" class="action-tile">
+                                           <i class="fas fa-file-invoice"></i>
+                                           <h6>View Records</h6>
+                                       </a>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+           <!-- FOOTER - INSPIRED BY YOUR IMAGE -->
+<footer class="footer-inspired">
+    <!-- Top Dark Section -->
+    <div class="footer-top">
+        <div class="container text-center">
+            
+            <!-- Social Icons -->
+            <div class="social-icons mb-4">
+                <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+
+            <!-- Main Navigation -->
+            <nav class="footer-nav mb-4">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="dashboard.html">Dashboard</a></li>
+                    <li class="list-inline-item"><a href="medications.html">Medications</a></li>
+                    <li class="list-inline-item"><a href="pharmacy-finder.html">Pharmacies</a></li>
+                    <li class="list-inline-item"><a href="education.html">Education</a></li>
+                    <li class="list-inline-item"><a href="orders.html">Orders</a></li>
+                </ul>
+            </nav>
+
+            <!-- Secondary Navigation -->
+            <nav class="footer-nav-secondary">
+                 <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Appointments</a></li>
+                    <li class="list-inline-item"><a href="#">Support</a></li>
+                    <li class="list-inline-item"><a href="#">Contact</a></li>
+                    <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Scroll to Top Button -->
+            <a href="#" id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Bottom Blue Section -->
+    <div class="footer-bottom">
+        <div class="container text-center">
+            <p class="mb-0">EMPOWERING YOUR HEALTH JOURNEY, WITH <i class="fas fa-heart"></i> CARE</p>
+            <p class="mb-0 copyright">© 2025 HealthHub. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // JavaScript for the Scroll to Top button
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+</script>
+</body>
+</html>
